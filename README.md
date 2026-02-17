@@ -1,10 +1,10 @@
 # Stockfish 17 vs 18 Lite - Performance Benchmark
 
-Benchmark automatisé comparant les performances d'initialisation et d'évaluation entre Stockfish 17-lite et Stockfish 18-lite en environnement navigateur (WebAssembly).
+Automated benchmark comparing initialization and evaluation performance between Stockfish 17-lite and Stockfish 18-lite in browser environment (WebAssembly).
 
-## 🔴 Problème identifié
+## 🔴 Identified Issue
 
-**Stockfish 18-lite est significativement plus lent que la version 17-lite** :
+**Stockfish 18-lite is significantly slower than version 17-lite**:
 
 ```
 📊 FINAL STATISTICS (20 iterations)
@@ -26,16 +26,16 @@ Benchmark automatisé comparant les performances d'initialisation et d'évaluati
   Diff: +583ms avg (+96.9%)
 ```
 
-### Résumé
-- **Initialisation** : 2.8x plus lente (+177%)
-- **Évaluation** : 1.5x plus lente (+54%)
-- **Total** : 2x plus lent (+97%)
+### Summary
+- **Initialization**: 2.8x slower (+177%)
+- **Evaluation**: 1.5x slower (+54%)
+- **Total**: 2x slower (+97%)
 
-## 🚀 Installation & Utilisation
+## 🚀 Installation & Usage
 
-### Prérequis
-- Node.js (pour npm)
-- Navigateur moderne compatible WebAssembly
+### Prerequisites
+- Node.js (for npm)
+- Modern browser with WebAssembly support
 
 ### Setup
 ```bash
@@ -43,82 +43,82 @@ npm install
 npm run dev
 ```
 
-Ouvrir http://localhost:3030
+Open https://localhost:3030
 
-### Utilisation
-1. Cliquer sur **"▶️ Start Benchmark"**
-2. Attendre la fin des 20 itérations
-3. Les statistiques finales s'affichent automatiquement
+### Usage
+1. Click **"▶️ Start Benchmark"**
+2. Wait for 20 iterations to complete
+3. Final statistics are displayed automatically
 
 ## 📁 Structure
 
-- `stockfish-test-script.js` - Classe StockfishManager standalone avec gestion complète du protocole UCI
-- `benchmark.js` - Script de benchmark automatisé
-- `index.html` - Interface utilisateur
-- `stockfish-17-lite.js` / `stockfish-18-lite.js` - Workers Stockfish à comparer
+- `stockfish-test-script.js` - Standalone StockfishManager class with full UCI protocol management
+- `benchmark.js` - Automated benchmark script
+- `index.html` - User interface
+- `stockfish-17-lite.js` / `stockfish-18-lite.js` - Stockfish workers to compare
 
-## 🔧 Fonctionnalités
+## 🔧 Features
 
 ### StockfishManager
-Classe JavaScript standalone pour interagir avec Stockfish via Web Workers :
+Standalone JavaScript class to interact with Stockfish via Web Workers:
 
-- ✅ Gestion complète du protocole UCI
-- ✅ Queue de commandes avancée
-- ✅ Parsing des messages `info depth`
-- ✅ Logs de timing détaillés
-- ✅ Gestion des crashes et timeouts
-- ✅ Support MultiPV
+- ✅ Full UCI protocol management
+- ✅ Advanced command queue
+- ✅ Parsing of `info depth` messages
+- ✅ Detailed timing logs
+- ✅ Crash and timeout handling
+- ✅ MultiPV support
 
 ### Benchmark
-- 20 itérations automatiques
-- Réinitialisation complète du worker à chaque itération
-- Mesures précises (init, eval, total)
-- Statistiques min/max/moyenne
-- Calcul des différences absolues et en pourcentage
+- 20 automatic iterations
+- Full worker reset at each iteration
+- Precise measurements (init, eval, total)
+- Min/max/average statistics
+- Calculation of absolute and percentage differences
 
 ## 📊 Configuration
 
-Par défaut :
-- **Position** : Position de départ des échecs
-- **Depth** : 20
-- **Iterations** : 20
+Default values:
+- **Position**: Starting chess position
+- **Depth**: 20
+- **Iterations**: 20
 
-Modifiable via l'interface.
+Configurable via the interface.
 
-## 🐛 Détails techniques
+## 🐛 Technical Details
 
-### Temps d'initialisation
-Le temps d'init mesure :
-1. Création du Worker
-2. Commande `uci`
-3. Réception de `uciok` 
-4. Commande `isready`
-5. Réception de `readyok`
+### Initialization Time
+Init time measures:
+1. Worker creation
+2. `uci` command
+3. Reception of `uciok`
+4. `isready` command
+5. Reception of `readyok`
 
-### Temps d'évaluation  
-Le temps d'évaluation mesure :
-1. Envoi des commandes UCI (`position`, `setoption`, `go`)
-2. Réception de la première ligne `info depth`
-3. Analyse jusqu'à atteindre la profondeur configurée
-4. Commande `stop`
+### Evaluation Time
+Evaluation time measures:
+1. Sending UCI commands (`position`, `setoption`, `go`)
+2. Reception of first `info depth` line
+3. Analysis until configured depth is reached
+4. `stop` command
 
-## 💻 Environnement de test
+## 💻 Test Environment
 
 - Browser: Chrome/Firefox
 - OS: Windows/Linux/macOS
-- Headers COOP/COEP configurés (requis pour SharedArrayBuffer)
+- COOP/COEP headers configured (required for SharedArrayBuffer)
 
 ## 📝 Notes
 
-- Le script utilise `chess.js` uniquement pour la conversion UCI→SAN (optionnel)
-- Compatible avec tous les moteurs Stockfish compilés en WebAssembly
-- Les workers doivent être accessibles au même niveau que index.html
+- The script uses `chess.js` only for UCI→SAN conversion (optional)
+- Compatible with all Stockfish engines compiled to WebAssembly
+- Workers must be accessible at the same level as index.html
 
 ## 🤝 Contribution
 
-Issue reportée pour documenter la différence de performance entre SF17-lite et SF18-lite.
+Issue reported to document the performance difference between SF17-lite and SF18-lite.
 
-Si vous avez des insights sur l'origine du problème ou des suggestions d'optimisation, n'hésitez pas à commenter.
+If you have insights on the origin of the problem or optimization suggestions, feel free to comment.
 
 ## 📜 License
 
