@@ -110,7 +110,6 @@ Evaluation time measures:
 
 ## 📝 Notes
 
-- The script uses `chess.js` only for UCI→SAN conversion (optional)
 - Compatible with all Stockfish engines compiled to WebAssembly
 - Workers must be accessible at the same level as index.html
 

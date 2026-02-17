@@ -8,7 +8,6 @@
  *   await sf.evaluateFen('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
  *   console.log(sf.currentEval)
  */
-import { Chess } from 'chess.js'
 class StockfishManager {
   constructor(workerPath) {
     this.workerPath = workerPath
