@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stockfish 17 vs 18 Test</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    h1 { color: #4ec9b0; }
+    button {
+      background: #0e639c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover { background: #1177bb; }
+    button:disabled {
+      background: #3c3c3c;
+      cursor: not-allowed;
+    }
+    #output {
+      background: #252526;
+      border: 1px solid #3c3c3c;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 4px;
+      white-space: pre-wrap;
+      font-size: 13px;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    .success { color: #4ec9b0; }
+    .error { color: #f48771; }
+    .info { color: #ce9178; }
+    .eval { color: #dcdcaa; }
+    input, select {
+      background: #3c3c3c;
+      color: #d4d4d4;
+      border: 1px solid #6c6c6c;
+      padding: 8px;
+      margin: 5px;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+    .controls {
+      margin: 20px 0;
+      padding: 15px;
+      background: #252526;
+      border-radius: 4px;
+    }
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .engine-panel {
+      background: #252526;
+      padding: 15px;
+      border-radius: 4px;
+      border: 2px solid #3c3c3c;
+    }
+    .engine-panel h2 {
+      margin-top: 0;
+      color: #dcdcaa;
+    }
+    .engine-panel.active {
+      border-color: #4ec9b0;
+    }
+  </style>
+</head>
+<body>
+  <h1>⚡ Stockfish 17 vs 18 Init Benchmark</h1>
+  
+  <div class="controls">
+    <div>
+      <label>Position FEN:</label>
+      <input type="text" id="fen" size="60" value="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1">
+    </div>
+    
+    <div style="margin-top: 10px;">
+      <label>Depth:</label>
+      <input type="number" id="depth" value="20" min="1" max="40" style="width: 60px;">
+      
+      <label style="margin-left: 20px;">Iterations:</label>
+      <span id="iterations" style="color: #4ec9b0; font-weight: bold;">0/20</span>
+    </div>
+    
+    <div style="margin-top: 15px;">
+      <button id="btnStart">▶️ Start Benchmark</button>
+      <button id="btnStop" disabled>⏸️ Stop</button>
+      <button id="btnClear">🧹 Clear Logs</button>
+    </div>
+  </div>
+
+  <div class="comparison">
+    <div class="engine-panel" id="panel17">
+      <h2>⚡ Stockfish 17-lite</h2>
+      <div id="output17">Waiting...</div>
+    </div>
+    <div class="engine-panel" id="panel18">
+      <h2>🚀 Stockfish 18-lite</h2>
+      <div id="output18">Waiting...</div>
+    </div>
+  </div>
+  
+  <div id="output">Ready to compare engines...</div>
+
+  <script type="module" src="/benchmark.js"></script>
+</body>
+</html>
